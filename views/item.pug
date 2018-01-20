@@ -1,0 +1,23 @@
+extends deps/layout.pug
+
+block scripts
+    script(type="text/javascript" src="js/vue.js")
+    script(type="text/javascript" src="js/item.js")
+
+block heading-background
+    div(id="heading-bg" style="background-color: #207c51; width: 100%; height: 400px;")
+
+block heading-contents
+
+block page-contents
+    .row.product-details(v-if="product")
+        .col-6
+            img(:src="product.images[0].src")
+        .col-6
+            h1 {{product.title}}
+            p {{product.description}}
+            form
+                .clearfix(style = "margin-top: 16px;")
+                    input(v-model="pounds" type="number" name="pounds" value="1" min="1" max="20" style="float: left;")
+                    label(for="pounds" style="float: left; margin-left: 8px; line-height: 42px;") Pounds
+                button(:disabled="deactivate" @click="addToCart" type="button") Add to Cart

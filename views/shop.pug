@@ -1,0 +1,25 @@
+extends deps/layout.pug
+
+block scripts
+    script(type="text/javascript" src="js/vue.js")
+    script(type="text/javascript" src="js/shop.js")
+
+block heading-background
+    div(id="heading-bg" style="background-color: #207c51; width: 100%; height: 400px;")
+
+block heading-contents
+    .shop-search
+        input(id="searchbar" type="text", name="" placeholder="Search" v-model="search" @input="newSearch")
+        span(class="fa fa-search")
+    
+block page-contents
+    h1.center In Season
+    .shop(id="shop" class="hidden")
+        .row(v-if="showProducts")
+            a(:href="`/item?${product.id}`" v-for="product in products")
+                .col-6.shop-item
+                    .image(:style="{backgroundImage: `url(${product.images[0].src})`}")
+                    .details
+                        h1 {{product.title}}
+                        span {{`$${product.variants[0].price} per lb`}}
+        h3(v-else class="center") Loading...

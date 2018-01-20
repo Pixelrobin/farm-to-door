@@ -1,0 +1,37 @@
+extends deps/layout.pug
+
+block scripts
+    script(type="text/javascript" src="js/vue.js")
+    script(type="text/javascript" src="js/cart.js")
+
+block heading-background
+    div(id="heading-bg" style="background-color: #207c51; width: 100%; height: 400px;")
+
+block heading-contents
+
+block page-contents
+    h1.center Cart
+    .cart(v-if="checkout")
+        .row(v-for="item in checkout.lineItems")
+            .cart-item.clearfix
+                a(:href="`/item?${item.customAttributes[1].value}`")
+                    .col-3
+                        .img(:style="{backgroundImage: `url(${item.customAttributes[0].value})`}")
+                .col-9
+                    .details
+                        a(:href="`/item?${item.customAttributes[1].value}`")
+                            h1(style="display: inline;") {{item.title}}
+                        br
+                        span {{`$${item.variant.price} per lb x ${item.quantity}`}}
+                        h2.h1(style="float: right") {{`$${(parseFloat(item.variant.price) * item.quantity).toFixed(2)}`}}
+                    button.red Remove
+
+        .row
+            .col-3
+            .col-9
+                h1.f-left Total
+                h2.h1(style="float: right") {{`$${checkout.totalPrice}`}}
+
+        .div.center(style="margin-top: 32px;")
+            a.button(:href="checkout.webUrl" style="margin-right: 8px; display: inline-block") Checkout
+            button.red(style="display: inline-block;" @click="clearCart") Clear Cart

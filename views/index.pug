@@ -1,0 +1,34 @@
+extends deps/layout.pug
+
+block heading-background
+    //div(id="heading-bg" style="background-color: purple; width: 100%; height: 400px;")
+    video(autoplay muted loop id="heading-bg")
+        source(src="res/header-video.mp4" type="video/mp4")
+
+block heading-contents
+    //div(style="padding-bottom: 128px;")
+    .home-heading
+        h1 Fresh Produce
+            h2
+                | Delivered right to your door
+                br
+                | straight from local farms.
+            a(href="/shop" class="button cta") Browse Produce
+
+            svg(viewBox="0 0 10 1" preserveAspectRatio="none")
+                path(d="M0 1 L10 1 L10 0 L0 1" fill="white")
+
+block page-contents
+    .h1-block
+        h1(class="h3")
+            | Connecting
+            br
+            span(class="h1") Whatcom County
+            br
+            | With local farmers.
+        
+    .row
+        .col-6
+            img(class="grid-image" src="res/tomatoes.jpg")
+        .col-6
+            p Farm to Door was created to bridge the gap between you and the farmers in Whatcom County. Located in Lynden, we aim to provide you with the freshest produce and farmers with a direct customer base. Order fruits and vegetables when they are in season and have them delivered to your door within hours, or subscribe to produce of your choice and have it delivered to you regularly. We offer bulk purchases on some items too.

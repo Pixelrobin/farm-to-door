@@ -1,0 +1,25 @@
+{
+  "name": "farm-to-door",
+  "version": "1.0.0",
+  "description": "Farm to Door Shopify Storefront",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp",
+    "start": "http-server ."
+  },
+  "author": "Michael Savchuk",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-pug": "^3.3.0",
+    "gulp-webpack": "^1.5.0",
+    "promise-polyfill": "7.0.0",
+    "shopify-buy": "^1.0.2",
+    "webpack": "^3.10.0"
+  }
+}

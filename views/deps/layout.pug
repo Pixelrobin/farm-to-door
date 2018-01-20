@@ -1,0 +1,91 @@
+// THIS DOCUMENT IS AUTO GENERATED FROM SOURCE FILES IN THE 'PUG' FOLDER
+doctype html
+
+html
+    head
+        title Farm to Door
+
+        // meta
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        block meta
+        
+        // fonts
+        link(rel="stylesheet" href="css/fonts.css")
+        link(rel="stylesheet" href="css/font-awesome.css")
+        block fonts
+
+        // styles
+        link(rel="stylesheet" href="css/simple-grid.css")
+        link(rel="stylesheet" href="css/main.css")
+        block styles
+
+        // scripts
+        script(type="text/javascript" src="js/js-cookie.min.js")
+        script(type="text/javascript" src="js/js-buy-sdk.js")
+        script(type="text/javascript" src="js/bundle.js")
+        block scripts
+    
+    body
+        div(id="app")
+            div(id="mobile-padding")
+            
+            div(id="mobile-nav")
+                ul(class="nav-icons")
+                    li
+                        a(href="/shop")
+                            span(class="fa fa-shopping-cart" style="margin-right: 8px;")
+                    li
+                        span(class="fa fa-navicon" onclick="toggleMobileMenu()")
+            
+                ul(class="nav-items")
+                    a(href="/")
+                        li(class="darker current-page")
+                            |
+                            span(class="fa fa-home")
+                            | Home
+                    a(href="/shop")
+                        li
+                            |
+                            span(class="fa fa-shopping-basket")
+                            | Shop
+                    a(href="#")
+                        li(class="darker")
+                            |
+                            span(class="fa fa-users")
+                            | About
+                    a(href="/cart")
+                        li
+                            |
+                            span(class="fa fa-shopping-cart")
+                            | Cart
+                
+
+            .heading
+                block heading-background
+            
+                header(class="clearfix")
+                    a(href="/")
+                        img(src="res/logo.svg" id="header-logo")
+                    
+                    nav(id="header-nav")
+                        div(id="nav")
+                        ul(id="nav-items")
+                            li(class="hide-home current-page")
+                                a(href="/") Home
+                            li
+                                a(href="/shop") Shop
+                            li
+                                a(href="#") About
+                            li
+                                a(href="/cart")
+                                    span(class="fa fa-shopping-cart" style="margin-right: 8px;")
+
+                block heading-contents
+
+            
+            div(class="page")
+                div(class="container")
+                    block page-contents
+        
+        block end-of-body
