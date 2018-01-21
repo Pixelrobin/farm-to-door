@@ -31,34 +31,35 @@ html
             div(id="mobile-padding")
             
             div(id="mobile-nav")
-                ul(class="nav-icons")
-                    li
+                div(id="mobile-nav-contents")
+                    ul(class="nav-icons")
+                        li
+                            a(href="/cart")
+                                span(class="fa fa-shopping-cart" style="margin-right: 8px;")
+                        li
+                            span(class="fa fa-navicon" onclick="toggleMobileMenu()")
+                
+                    ul(class="nav-items")
+                        a(href="/")
+                            li(class="darker current-page")
+                                |
+                                span(class="fa fa-home")
+                                | Home
                         a(href="/shop")
-                            span(class="fa fa-shopping-cart" style="margin-right: 8px;")
-                    li
-                        span(class="fa fa-navicon" onclick="toggleMobileMenu()")
-            
-                ul(class="nav-items")
-                    a(href="/")
-                        li(class="darker current-page")
-                            |
-                            span(class="fa fa-home")
-                            | Home
-                    a(href="/shop")
-                        li
-                            |
-                            span(class="fa fa-shopping-basket")
-                            | Shop
-                    a(href="#")
-                        li(class="darker")
-                            |
-                            span(class="fa fa-users")
-                            | About
-                    a(href="/cart")
-                        li
-                            |
-                            span(class="fa fa-shopping-cart")
-                            | Cart
+                            li
+                                |
+                                span(class="fa fa-shopping-basket")
+                                | Shop
+                        a(href="#")
+                            li(class="darker")
+                                |
+                                span(class="fa fa-users")
+                                | About
+                        a(href="/cart")
+                            li
+                                |
+                                span(class="fa fa-shopping-cart")
+                                | Cart
                 
 
             .heading
@@ -87,5 +88,15 @@ html
             div(class="page")
                 div(class="container")
                     block page-contents
+            
+            div(id="popup-bg" class="hidden")
+                div(style="position: relative;")
+                    div(id="popup-contents")
+                        h1(id="popup-heading").center Are you sure?
+                        p(id="popup-text").center This action cannot be undone.
+                        div.center
+                            button(id="popup-cancel").red Cancel
+                            button(id="popup-yes") Yes
+                        block popup-contents
         
         block end-of-body

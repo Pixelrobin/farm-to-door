@@ -7,15 +7,27 @@ window.addEventListener("load", function() {
         },
 
         methods: {
+            removeItem: function(id, title) {
+                
+                window.openPopup("Remove this item?", title)
+                    .then(
+                        function() {window.removeFromCart(id);},
+                        function() {console.log("Remove item cancelled")}
+                    )
+            },
+
             clearCart: function() {
-                console.log("Clearing Cart")
-                window.clearCart();
+                window.openPopup("Clear cart?", "This can't be undone.")
+                    .then(
+                        function() {window.clearCart();},
+                        function() {console.log("Clear cart cancelled");}
+                    )
             }
         }
     });
 
-    window.addEventListener("checkout-updated", function(e) {
+    window.ee.on("checkout-updated", function() {
         console.log("checkout update!", window.checkout)
         app.checkout = window.checkout;
-    })
+    });
 });

@@ -22,9 +22,9 @@ block page-contents
                         a(:href="`/item?${item.customAttributes[1].value}`")
                             h1(style="display: inline;") {{item.title}}
                         br
-                        span {{`$${item.variant.price} per lb x ${item.quantity}`}}
+                        span {{`$${item.variant.price} x ${item.quantity} lb`}}
                         h2.h1(style="float: right") {{`$${(parseFloat(item.variant.price) * item.quantity).toFixed(2)}`}}
-                    button.red Remove
+                    button.red(@click="removeItem(item.id, item.title)") Remove
 
         .row
             .col-3
@@ -32,6 +32,6 @@ block page-contents
                 h1.f-left Total
                 h2.h1(style="float: right") {{`$${checkout.totalPrice}`}}
 
-        .div.center(style="margin-top: 32px;")
+        div.center(style="margin-top: 32px;")
             a.button(:href="checkout.webUrl" style="margin-right: 8px; display: inline-block") Checkout
             button.red(style="display: inline-block;" @click="clearCart") Clear Cart

@@ -15,9 +15,16 @@ block page-contents
             img(:src="product.images[0].src")
         .col-6
             h1 {{product.title}}
-            p {{product.description}}
-            form
-                .clearfix(style = "margin-top: 16px;")
-                    input(v-model="pounds" type="number" name="pounds" value="1" min="1" max="20" style="float: left;")
+            p(style="margin-bottom: 32px;") {{product.description}}
+            form(v-if="showCartOptions")
+                .clearfix(v-if="!inCart" style = "margin-top: 16px;")
+                    input(v-model="pounds" type="number" name="pounds" value="1" min="1" max="10" style="float: left;")
                     label(for="pounds" style="float: left; margin-left: 8px; line-height: 42px;") Pounds
-                button(:disabled="deactivate" @click="addToCart" type="button") Add to Cart
+                span.h2(v-else)
+                    .fa.fa-check
+                    | Added to Cart
+                    br
+
+                button(v-if="!inCart" :disabled="(deactivate)" @click="addToCart" type="button") Add to Cart
+                a.button(href="/cart" v-if="inCart") View Cart
+                a.button.red(v-if="inCart" @click="removeItem(product.id, product.title)" type="button") Remove

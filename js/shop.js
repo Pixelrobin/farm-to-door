@@ -43,11 +43,3 @@ window.addEventListener( "load", function() {
         app.showProducts = true;
     });
 });
-
-/*
-client.product.fetchQuery({
-        query: "brussels",
-        sortKey: "TITLE"
-    }).then(function(products) {
-        app.products = products;
-    })*/
