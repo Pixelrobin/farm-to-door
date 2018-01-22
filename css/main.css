@@ -405,6 +405,7 @@ button:disabled, .button:disabled {
     right: 0;
     top: 0;
     bottom: 0;
+    max-height: 100vh;
     background-color: rgba(255, 255, 255, 0.5);
     pointer-events: auto;
     z-index: 101;
@@ -434,20 +435,22 @@ button:disabled, .button:disabled {
 }
 
 #popup-heading {
-    font-size: 48px;
-    line-height: 50px;
+    height: 100vh;
+}
+
+#welcome-bg {
+    width: 100%;
+    height: 100%;
 }
 
 #welcome-contents {
-    position: absolute;
     background-color: white;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
     padding: 32px;
     animation-name: welcome;
     animation-duration: 0.25s;
+    overflow: scroll;
+    height: 100vh;
+    max-height: 100vh;
 }
 
 @keyframes welcome {
