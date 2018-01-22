@@ -2,6 +2,7 @@
 //window.Promise = require("./promise.min.js");
 //require("whatwg-fetch");
 //require("./object-assign.js");
+window.objectFitVideos = require("./object-fit-videos.min.js");
 var ShopifyBuy = require("shopify-buy");
 var EventEmitter = require("eventemitter-light");
 

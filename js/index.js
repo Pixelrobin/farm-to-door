@@ -8,6 +8,7 @@ window.addEventListener("load", function() {
 
 	document.getElementById("header-logo").className = "";
 	window.setMenuCurrentItem("home");
+	objectFitVideos(document.getElementById("heading-bg"));
 	
 	var app = new Vue({
 		el: "#app",

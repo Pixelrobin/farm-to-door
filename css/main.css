@@ -1,3 +1,4 @@
+/* https://github.com/TricomB2B/object-fit-videos */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -156,6 +157,8 @@ a:hover {color: #207c51}
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    font-family: 'object-fit: cover; object-position: center;';
     z-index: -1;
 }
 
@@ -396,7 +399,7 @@ button:disabled, .button:disabled {
     display: table;
 }
 
-#popup-bg {
+#popup-bg, #welcome-bg {
     position: fixed;
     left: 0;
     right: 0;
@@ -433,6 +436,23 @@ button:disabled, .button:disabled {
 #popup-heading {
     font-size: 48px;
     line-height: 50px;
+}
+
+#welcome-contents {
+    position: absolute;
+    background-color: white;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 32px;
+    animation-name: welcome;
+    animation-duration: 0.25s;
+}
+
+@keyframes welcome {
+    from {opacity: 0}
+    to {opactiy: 1}
 }
 
 .shop {
