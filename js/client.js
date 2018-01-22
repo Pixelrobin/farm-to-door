@@ -7,7 +7,7 @@ var ShopifyBuy = require("shopify-buy");
 var EventEmitter = require("eventemitter-light");
 
 window.client = ShopifyBuy.buildClient({
-    storefrontAccessToken: '8be33c540856020904a790f4106047b6',
+    storefrontAccessToken: '8be33c540856020904a790f4106047b6', // This isn't a secret token ;)
     domain: 'farm-to-door.myshopify.com'
 });
 
