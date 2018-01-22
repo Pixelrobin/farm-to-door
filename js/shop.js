@@ -5,6 +5,8 @@ window.addEventListener( "load", function() {
     var shop = document.getElementById("shop");
     var timeout = -1;
 
+    window.setMenuCurrentItem("shop");
+
     var app = new Vue({
         el: "#app",
         data: {
@@ -35,11 +37,12 @@ window.addEventListener( "load", function() {
 
         created: function() {
             shop.className = "shop";
-        }
-    });
 
-    client.product.fetchAll().then(function(products) {
-        app.products = products;
-        app.showProducts = true;
+            client.product.fetchAll().then(function(products) {
+                app.products = products;
+                app.showProducts = true;
+                console.log(products);
+            });
+        }
     });
 });

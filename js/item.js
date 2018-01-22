@@ -6,7 +6,7 @@ window.addEventListener("load", function() {
         data: {
             id: location.search.substr(1),
             product: undefined,
-            pounds: 1,
+            pounds: "1",
             deactivate: false,
             inCart: false,
             showCartOptions: false
@@ -28,7 +28,34 @@ window.addEventListener("load", function() {
             },
 
             addToCart: function() {
-                window.addToCart(app.product.variants[0].id, parseInt(app.pounds), app.product.images[0].src, this.id);
+                var sub   = app.product.productType == "Subscription",
+                    size  = parseInt(app.pounds),
+                    type  = "",
+                    types = ["vegetables", "fruits", "fruits and veggies"],
+                    sizes = ["1-2", "3-4", "5-6"]
+
+                if (sub) {
+                    for (var r = 0; r < 3; r ++) {
+                        if (document.getElementById(sizes[r]).checked) {
+                            size = r;
+                        }
+
+                        if (document.getElementById(types[r]).checked) {
+                            type = r;
+                        }
+                    }
+                }
+
+                window.addToCart(
+                    app.product.variants[0].id,
+                    app.product.title,
+                    size + 1,
+                    app.product.images[0].src,
+                    this.id,
+                    app.product.productType == "Subscription",
+                    sizes[size] + " people, " + types[type]
+                );
+
                 return false;
             }
         },
@@ -43,6 +70,8 @@ window.addEventListener("load", function() {
                 console.log(product);
                 app.product = product;
             });
+            
+            document.getElementById("product-details").className = "row product-details";
         }
     });
 });

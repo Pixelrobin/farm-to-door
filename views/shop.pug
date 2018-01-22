@@ -1,7 +1,6 @@
 extends deps/layout.pug
 
 block scripts
-    script(type="text/javascript" src="js/vue.js")
     script(type="text/javascript" src="js/shop.js")
 
 block heading-background
@@ -13,13 +12,28 @@ block heading-contents
         span(class="fa fa-search")
     
 block page-contents
-    h1.center In Season
+    h1.center Products in Season
     .shop(id="shop" class="hidden")
-        .row(v-if="showProducts")
-            a(:href="`/item?${product.id}`" v-for="product in products")
-                .col-6.shop-item
-                    .image(:style="{backgroundImage: `url(${product.images[0].src})`}")
-                    .details
-                        h1 {{product.title}}
-                        span {{`$${product.variants[0].price} per lb`}}
+        div(v-if="showProducts")
+            div(v-if="products.length > 0")
+                a(:href="`/item?${product.id}`" v-for="product in products" v-if="product.productType == 'Subscription'")
+                    .shop-item(style="margin-bottom: 64px;")
+                        .row
+                            .subscription-image
+                                .image(:style="{backgroundImage: `url(${product.images[0].src})`}")
+                            .details
+                                h1 {{product.title}}
+                                p Get a random assortment of seasonal produce delivered to you regularly!
+                                span.block(style="margin-top: 16px;") {{`Starting at $${product.variants[0].price} per month`}}
+
+                h2.block.center Individual produce
+                .row
+                    a(:href="`/item?${product.id}`" v-for="product in products" v-if="product.productType !== 'Subscription'")
+                        .col-6.shop-item
+                            .image(:style="{backgroundImage: `url(${product.images[0].src})`}")
+                            .details
+                                h1 {{product.title}}
+                                span {{`$${product.variants[0].price} per lb`}}
+            h3.center(v-else) Nothing found.
+
         h3(v-else class="center") Loading...

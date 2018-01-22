@@ -1,9 +1,13 @@
 window.addEventListener("load", function() {
+
+    window.setMenuCurrentItem("cart");
+
     var app = new Vue({
         el: "#app",
 
         data: {
-            checkout: window.checkout
+            checkout: window.checkout,
+            checkoutData: window.checkoutData
         },
 
         methods: {
@@ -23,11 +27,15 @@ window.addEventListener("load", function() {
                         function() {console.log("Clear cart cancelled");}
                     )
             }
-        }
-    });
+        },
 
-    window.ee.on("checkout-updated", function() {
-        console.log("checkout update!", window.checkout)
-        app.checkout = window.checkout;
+        created: function() {
+            window.ee.on("checkout-updated", function() {
+                app.checkout = window.checkout;
+                app.checkoutData = window.checkoutData;
+            });
+
+            document.getElementById("cart").className = "";
+        }
     });
 });

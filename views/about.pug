@@ -1,0 +1,75 @@
+extends deps/layout.pug
+
+block heading-background
+    div(id="heading-bg" style="background-color: #207c51; width: 100%; height: 400px;")
+
+block heading-contents
+
+block page-contents
+    .about
+        h1.center About Us
+
+        .row(style="margin-bottom: 16px;")
+            .col-6
+                img(class="grid-image" src="res/tomatoes.jpg")
+            .col-6
+                p Farm to Door was created to bridge the gap between you and the farmers in Whatcom County. Located in Bellingham, Washington, we aim to provide you with the freshest produce and farmers with a direct customer base. Order fruits and vegetables when they are in season and have them delivered to your door within hours, or subscribe to produce of your choice and have it delivered to you regularly.
+        
+        .row
+            #contact.col-6
+                h2 Contact us
+                p Email: 
+                    a(href="mailto:contact@farmtodoor.com") contact@farmtodoor.com
+                p Phone: (360) 555-1234
+
+            #zip-codes.col-6
+                h2(style="margin-bottom: 8px;") Zip codes we ship to
+                ul(style="margin-left: 32px;")
+                    li 98225
+                    li 98226
+                    li 98229
+                    li 98248
+        
+        .row
+            #copyright.col-12
+                h2(style="margin-bottom: 8px;") Copyright notes
+                p The video on the homepage is composed of CC0 clips (100% free, no attribution required) acquired from 
+                    a(href="https://videos.pexels.com") videos.pexels.com
+                br
+                ul(style="margin-left: 32px;")
+                    li "Close Up Video Of Vegtables" from Pixabay/Skylent
+                    li "Chooped Broccoli" from Pixabay/XiaosKitchen
+                    li "Picking Up Cherry Tomatoes" from Coverr
+                    li "Strawberry Picking During Daytime" from Vimeo
+                    li "Close Up Video Of Raspberries" from Pixabay/KlausHausmann
+                br
+        
+        .row
+            .col-3
+                img(src="res/tomatoes.jpg")
+            .col-9
+                p The image of two people sharing tomatoes is from 
+                    a(href="https://unsplash.com/photos/qgHGDbbSNm8") Unsplash
+                    |  released under CC0 by Elaine Casap
+
+        .row
+            .col-3
+                img(src="res/subscription.jpg")
+            .col-9
+                p The image used for the subscription service is from 
+                    a(href="http://maxpixel.freegreatpicture.com/Celery-Parsley-Carrots-Garlic-Onions-Vegetables-1212845") Max Pixel
+                    |  Released under CC0
+        
+        .row
+            .col-12
+                p For copyright information on specific products in the 
+                    a(href="/shop") shop,
+                    |  refer to their individual descriptions.
+                br
+                h2 Github
+                p For copyright information related to the code behind the site, and to see the code behond it please refer to this website's 
+                    a(href="https://github.com/Pixelrobin/pixelrobin.github.io") Github Repository.
+
+block end-of-body
+    script.
+        window.setMenuCurrentItem("about")

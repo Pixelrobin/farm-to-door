@@ -1,5 +1,8 @@
 extends deps/layout.pug
 
+block scripts
+    script(type="text/javascript" src="js/index.js")
+
 block heading-background
     //div(id="heading-bg" style="background-color: purple; width: 100%; height: 400px;")
     video(autoplay muted loop id="heading-bg")
@@ -13,8 +16,9 @@ block heading-contents
                 | Delivered right to your door
                 br
                 | straight from local farms.
+            
             a(href="/shop" class="button cta") Browse Produce
-            a(href="/shop" class="heading-link") Check Avaliability in your area
+            a(href="#zip-search" class="heading-link") Check Avaliability in your area
 
             svg(viewBox="0 0 10 1" preserveAspectRatio="none")
                 path(d="M0 1 L10 1 L10 0 L0 1" fill="white")
@@ -28,8 +32,49 @@ block page-contents
             br
             | With local farmers.
         
-    .row
+    .row(style="margin-bottom: 16px;")
         .col-6
             img(class="grid-image" src="res/tomatoes.jpg")
         .col-6
-            p Farm to Door was created to bridge the gap between you and the farmers in Whatcom County. Located in Lynden, we aim to provide you with the freshest produce and farmers with a direct customer base. Order fruits and vegetables when they are in season and have them delivered to your door within hours, or subscribe to produce of your choice and have it delivered to you regularly. We offer bulk purchases on some items too.
+            p Farm to Door was created to bridge the gap between you and the farmers in Whatcom County. Located in Bellingham, Washington, we aim to provide you with the freshest produce and farmers with a direct customer base. Order fruits and vegetables when they are in season and have them delivered to your door within hours, or subscribe to produce of your choice and have it delivered to you regularly.
+            br
+            a(href="/shop") View the shop
+            br
+            a(href="#zip-search") Check avaliability in your area
+
+block before-footer
+    .subscription-block
+        .details
+            svg.top(viewBox="0 0 10 1" preserveAspectRatio="none")
+                path(d="M10 0 L0 0 L0 1 L10 0")
+
+            span.h2 New!
+            h1.center Monthly Subscription Package
+            p(style="font-size: 1.2em;") Get a random assortment of seasonal produce delivered to you regularly!
+
+            a(href="/item?Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzIyNjQ3MDE2NjU3Mg==" class="button cta") Check it Out!
+            p(class="heading-link")
+                | ...or 
+                a(href="/shop" style="color: white;") view the shop
+
+            svg.bottom(viewBox="0 0 10 1" preserveAspectRatio="none")
+                path(d="M0 1 L10 1 L10 0 L0 1")
+    
+    div(style="color: white; padding: 200px 0; text-align: center" id="zip-search")
+        h1.h3(style="margin-bottom: 16px; margin-top: 32px;")
+            span.h2 Check Avaliability
+            br
+            | In your area
+        
+        span(:class="faClass" style="font-size: 64px;" v-if="faClass !== ''")
+        br
+        span.h3.hidden(id="zip-search-result") {{result}}
+        br
+
+        .zip-search(style="margin-top: 8px;")
+            input(v-model="zipcode" type="text" placeholder="Zip Code")
+            span(class="fa fa-search")
+        
+        p(class="heading-link")
+                | ...or 
+                a(href="/about#zip-codes" style="color: white;") view a list of where we deliver

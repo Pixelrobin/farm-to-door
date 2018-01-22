@@ -24,12 +24,11 @@ html
         script(type="text/javascript" src="js/js-cookie.min.js")
         script(type="text/javascript" src="js/js-buy-sdk.js")
         script(type="text/javascript" src="js/bundle.js")
+        script(type="text/javascript" src="js/vue.js")
         block scripts
     
     body
         div(id="app")
-            div(id="mobile-padding")
-            
             div(id="mobile-nav")
                 div(id="mobile-nav-contents")
                     ul(class="nav-icons")
@@ -50,7 +49,7 @@ html
                                 |
                                 span(class="fa fa-shopping-basket")
                                 | Shop
-                        a(href="#")
+                        a(href="/about")
                             li(class="darker")
                                 |
                                 span(class="fa fa-users")
@@ -67,36 +66,46 @@ html
             
                 header(class="clearfix")
                     a(href="/")
-                        img(src="res/logo.svg" id="header-logo")
+                        img.limit-height(src="res/logo.svg" id="header-logo")
                     
                     nav(id="header-nav")
                         div(id="nav")
                         ul(id="nav-items")
-                            li(class="hide-home current-page")
+                            li#menu-home(class="hide-home")
                                 a(href="/") Home
-                            li
+                            li#menu-shop
                                 a(href="/shop") Shop
-                            li
-                                a(href="#") About
-                            li
+                            li#menu-about
+                                a(href="/about") About
+                            li#menu-cart
                                 a(href="/cart")
                                     span(class="fa fa-shopping-cart" style="margin-right: 8px;")
 
                 block heading-contents
-
             
             div(class="page")
                 div(class="container")
                     block page-contents
             
+                div(style="background-color: #207c51")
+                    block before-footer
+                
+            footer
+                p.center
+                    | Copyright Farm to Door 2018. See 
+                    a(href="/about#copyright" style="color: white;") additional copyright details.
+                p.center Disclaimer: This is a mock website made for an 
+                    a(href="http://www.fbla-pbl.org/" style="color: white;") FBLA Competition
+            
             div(id="popup-bg" class="hidden")
-                div(style="position: relative;")
-                    div(id="popup-contents")
-                        h1(id="popup-heading").center Are you sure?
-                        p(id="popup-text").center This action cannot be undone.
-                        div.center
-                            button(id="popup-cancel").red Cancel
-                            button(id="popup-yes") Yes
-                        block popup-contents
+                div(style="position: relative; width: 100%;")
+                    div(id="popup-container")
+                        div(id="popup-contents")
+                            h1(id="popup-heading").center Are you sure?
+                            p(id="popup-text").center This action cannot be undone.
+                            div.center
+                                button(id="popup-cancel").red Cancel
+                                button(id="popup-yes") Yes
+                            block popup-contents
         
         block end-of-body

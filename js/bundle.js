@@ -58,6 +58,10 @@
 
 	window.checkout = null;
 	window.checkoutId = sessionStorage.getItem("checkout-id");
+	window.checkoutData = sessionStorage.getItem("checkout-data");
+
+	if (!window.checkoutData) window.checkoutData = {};
+	else window.checkoutData = JSON.parse(window.checkoutData);
 	//window.checkoutUpdated = document.createEvent("checkout-updated");//new Event("checkout-updated");
 
 	//checkoutUpdated.initCustomEvent();
@@ -83,20 +87,36 @@
 	    client.checkout.fetch(checkoutId).then(updateCheckout);
 	}
 
-	window.addToCart = function(id, pounds, image, url) {
+	window.setMenuCurrentItem = function(id) {
+	    document.getElementById("menu-" + id). className += " current-page";
+	}
+
+	window.updateCheckoutData = function(key, image, id, sub) {
+	    window.checkoutData[key] = {
+	        image: image,
+	        id: id,
+	        subscription: sub
+	    }
+
+	    sessionStorage.setItem("checkout-data", JSON.stringify(window.checkoutData));
+	}
+
+	window.addToCart = function(id, title, pounds, image, productId, sub, attr) {
 	    if (window.isInCart(id)) return;
 
-	    client.checkout.addLineItems(checkoutId, [{
+	    var data = {
 	        variantId: id,
-	        quantity: pounds,
-	        customAttributes: [{
-	            key: "image",
-	            value: image
-	        }, {
-	            key: "url",
-	            value: url
-	        }]
-	    }]).then(updateCheckout);
+	        quantity: pounds
+	    }
+
+	    if (attr && sub) data.customAttributes = [{
+	        key: "Subscription details",
+	        value: attr
+	    }];
+
+	    client.checkout.addLineItems(checkoutId, [data]).then(updateCheckout);
+
+	    updateCheckoutData(title, image, productId, sub);
 	}
 
 	window.removeFromCart = function(id) {
@@ -116,11 +136,16 @@
 	}
 
 	window.isInCart = function(productId) {
+	    console.log("checking in cart")
 	    if (window.checkout) {
 	        for (var i = 0; i < checkout.lineItems.length; i ++) {
 	            var item = checkout.lineItems[i];
-	            if (item.customAttributes[1].value == productId) {
-	                return true;
+	            console.log(item.title);
+	            console.log(window.checkoutData[item.title].id, productId);
+	            if (window.checkoutData[item.title]) {
+	                if (window.checkoutData[item.title].id == productId) {
+	                    return true;
+	                }
 	            }
 	        }
 	    }
@@ -132,8 +157,11 @@
 	    if (window.checkout) {
 	        for (var i = 0; i < checkout.lineItems.length; i ++) {
 	            var item = checkout.lineItems[i];
-	            if (item.customAttributes[1].value == productId) {
-	                return item.id;
+
+	            if (window.checkoutData[item.title]) {
+	                if (window.checkoutData[item.title].id == id) {
+	                    return item.id;
+	                }
 	            }
 	        }
 	    }
